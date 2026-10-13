@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# 数据文件
+*.fastq
+*.fastq.gz
+*.bam
+*.bai
+*.jsonl
+*.tsv
+*.fasta
+*.fai
+*.mmi
+
+# 输出目录
+output/
+*output/
+01_qc/
+02_scan/
+03_j58/
+04_candidates/
+05_align/
+06_qc/
+07_classify/
+08_cluster/
+09_fragments/
+
+# 日志
+*.log
+
+# 系统
+.DS_Store
+Thumbs.db
