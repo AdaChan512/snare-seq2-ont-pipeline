@@ -137,13 +137,14 @@ def classify_read(record, j58_hit, alignment):
 
     # === 互斥分类 (按优先级) ===
 
-    # E33 + T30 组合
+    # E33 + T30 组合 (纯位置判定: 只看先后顺序, 不要求 T30 ED=0;
+    # 带 1~3 个测序错配但结构正确的 reads 同样归入 E33 → RC(T30), 尽量保留数据)
     if has_e33 and has_t30:
-        # full E33 → RC(T30): E33 在前, T30 反向互补在后
-        if full_e33[1] <= full_t30[0] and not full_t30[2]:
+        # full E33 → RC(T30): E33 在前, T30 在后
+        if full_e33[1] <= full_t30[0]:
             return "full E33 → RC(T30)"
-        # 其他顺序或方向
-        if full_e33[0] > full_t30[1] or full_t30[2] > 0:
+        # T30 在前, E33 在后
+        if full_e33[0] > full_t30[1]:
             return "full E33＋T30：其他顺序或方向"
         return "多重 full E33 / T30 命中"
 
